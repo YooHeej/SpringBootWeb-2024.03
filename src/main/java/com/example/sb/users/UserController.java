@@ -81,7 +81,7 @@ public class UserController {
 		return "redirect:/user/list/1";
 	}
 	
-	@GetMapping("/delete")
+	@GetMapping("/delete/{uid}")
 	public String delete(@PathVariable String uid) {
 		userSvc.deleteUser(uid);
 		return "redirect://user/list/1";
