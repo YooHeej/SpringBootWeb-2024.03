@@ -82,7 +82,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/delete")
-	public String delete(@RequestParam String uid) {
+	public String delete(@PathVariable String uid) {
 		userSvc.deleteUser(uid);
 		return "redirect://user/list/1";
 		
