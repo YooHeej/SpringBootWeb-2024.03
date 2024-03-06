@@ -12,6 +12,19 @@ public class User {
 	
 	public User() {	}
 	
+	
+	public User(String uid) {
+		this.uid = uid;
+	}
+
+
+	public User(String uid, String pwd) {
+		this.uid = uid;
+		this.pwd = pwd;
+	}
+
+
+
 	public User(String uid, String pwd, String uname, String email) {
 		this.uid = uid;
 		this.pwd = pwd;
