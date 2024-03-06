@@ -102,41 +102,40 @@ public class BasicController {
 //		}
 //	}
 	
-//	@PostMapping("/login")
-//	public String loginProc(String uid, String pwd, HttpSession session, Model model) {
-//		String hashedPwd = "$2a$10$gBKG8IZVNCHGVVWmDQLsXOd/KId9/5YboVtmfzAZo1j9bLpRpjw46";
-//		if (uid.equals("james") && BCrypt.checkpw(pwd, hashedPwd)) {
-//			model.addAttribute("msg", uid + "님이 로그인 했다.");
-//			session.setAttribute("sessUid", "uid");
-//			session.setAttribute("sessUname", "제임스");
-//			return "exercise/loginResult";
-//		} else {
-//			model.addAttribute("msg", "uid , 비밀번호 확인");
-//			return "exercise/loginResult";
-//		}
-//	}
-	
-	
 	@PostMapping("/login")
-	   public String loginProc(String uid, String pwd, HttpSession session, Model model){
-	      String hashedPwd = "$2a$10$gBKG8IZVNCHGVVWmDQLsXOd/KId9/5YboVtmfzAZo1j9bLpRpjw46";
-	      if (uid.equals("james")&& BCrypt.checkpw(pwd, hashedPwd)) {
-	         model.addAttribute("msg", uid + "님이 로그인 했습니다.");
-	         session.setAttribute("sessUid", uid);
-	         session.setAttribute("sessUname", "제임스");
-	         return "exercise/loginResult";
-	      }else {
-	         model.addAttribute("msg", "uid, 비밀번호를 확인하세요.");
-	         return "exercise/loginResult";
-	      }
-	   }
-	
-	@GetMapping("/path/{uid}/{bid}")
-	@ResponseBody
-	public String path(@PathVariable String uid, @PathVariable int bid) {
-		return "<h1>uid=" + uid + ", bid=" + bid + "</h1>";
+	public String loginProc(String uid, String pwd, HttpSession session, Model model) {
+		String hashedPwd = "$2a$10$gBKG8IZVNCHGVVWmDQLsXOd/KId9/5YboVtmfzAZo1j9bLpRpjw46";
+		if (uid.equals("james") && BCrypt.checkpw(pwd, hashedPwd)) {
+			model.addAttribute("msg", uid + "님이 로그인 했다.");
+			session.setAttribute("sessUid", "uid");
+			session.setAttribute("sessUname", "제임스");
+			return "exercise/loginResult";
+		} else {
+			model.addAttribute("msg", "uid , 비밀번호 확인");
+			return "exercise/loginResult";
+		}
 	}
 	
 	
+//	@PostMapping("/login")
+//	   public String loginProc(String uid, String pwd, HttpSession session, Model model){
+//	      String hashedPwd = "$2a$10$gBKG8IZVNCHGVVWmDQLsXOd/KId9/5YboVtmfzAZo1j9bLpRpjw46";
+//	      if (uid.equals("james")&& BCrypt.checkpw(pwd, hashedPwd)) {
+//	         model.addAttribute("msg", uid + "님이 로그인 했습니다.");
+//	         session.setAttribute("sessUid", uid);
+//	         session.setAttribute("sessUname", "제임스");
+//	         return "exercise/loginResult";
+//	      }else {
+//	         model.addAttribute("msg", "uid, 비밀번호를 확인하세요.");
+//	         return "exercise/loginResult";
+//	      }
+//	   }
+	
+	@GetMapping(value={"/path/{uid}/{bid}", "/path/{uid}"})
+	@ResponseBody
+	public String path(@PathVariable String uid, @PathVariable(required=false) Integer bid) {
+		bid = (bid == null) ? 0 : bid;
+		return "<h1>uid=" + uid + ", bid=" + bid + "</h1>";
+	}
 	
 }
