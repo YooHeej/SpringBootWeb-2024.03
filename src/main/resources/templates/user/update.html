@@ -9,7 +9,7 @@
     <h1>사용자 수정</h1>
     <hr>
     <form action="/sb/user/update" method="post">
-        <input type="text" name="uid" placeholder="uid"><br><br>
+        <input type="hidden" name="uid" th:value="${uid}"placeholder="uid"><br><br>
         <input type="password" name="pwd" placeholder="암호"><br><br>
         <input type="password" name="pwd2" placeholder="암호 확인"><br><br>
         <input type="text" name="uname" placeholder="사용자 이름"><br><br>
